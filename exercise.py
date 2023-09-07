@@ -2,7 +2,7 @@
 only a certain set of characters (in this case a-z, A-Z and 0-9)."""
 # import re
 
-# pattern = '[a-z]+[A-Z]+[0-9]+'
+# pattern = '[a-z]+[A-Z]+[0-9]+' #[a-zA-Z0-9]
 
 
 
@@ -30,9 +30,9 @@ that has an a followed by zero or more b's."""
 
 # import re
 
-# pattern = '[b*]'
+# pattern = '[ab*]'
 
-# text = input("Enter a text to match if the input string has a followed by zero or more b's: ")
+# text = input("Enter a text to match if the input string has an a followed by zero or more b's: ")
 
 # match = re.search(pattern, text)
 
@@ -66,9 +66,9 @@ that has an a followed by one or more b's."""
 
 # import re
 
-# pattern = 'b+'
+# pattern = 'ab+'
 
-# text = input("Enter a text to match if the input string has a followed by one or more b's: ")
+# text = input("Enter a text to match if the input string has an a followed by one or more b's: ")
 
 # match = re.search(pattern, text)
 
@@ -94,9 +94,9 @@ that has an a followed by zero or one 'b'."""
 
 # import re
 
-# pattern = 'b?'
+# pattern = 'ab?'
 
-# text = input("Enter a text to match if the input string has a followed by zero or one 'b': ")
+# text = input("Enter a text to match if the input string has an a followed by zero or one 'b': ")
 
 # match = re.search(pattern, text)
 
@@ -122,9 +122,9 @@ that has an a followed by zero or one 'b'."""
 that has an a followed by three 'b'."""
 # import re
 
-# pattern = 'b{3}'
+# pattern = 'ab{3}'
 
-# text = input("Enter a text to match if the input string has a followed by three 'b'.: ")
+# text = input("Enter a text to match if the input string has an a followed by three 'b'.: ")
 
 # match = re.search(pattern, text)
 
@@ -152,8 +152,8 @@ that has an a followed by two to three 'b'."""
 
 # import re
 
-# pattern = 'b{2,3}'
-# text = input("Enter a text to match if the input string has a followed by two to three 'b'.: ")
+# pattern = 'ab{2,3}'
+# text = input("Enter a text to match if the input string has an a followed by two to three 'b'.: ")
 
 # match = re.search(pattern, text)
 
@@ -209,7 +209,7 @@ of one upper case letter followed by lower case letters."""
 
 # import re 
 
-# pattern = '([A-Z]){1}([a-z]+)'
+# pattern = '([A-Z]){1}([a-z]+)'   #pattern = '[A-Z][a-z]+'
 
 # text = input("Enter a text to match if the input string has sequences of one uppercase letter followed by lowercase letters: ")
 
@@ -228,7 +228,7 @@ that has an 'a' followed by anything ending in 'b'."""
 
 # import re
 
-# pattern = '(a).*(b$)'
+# pattern = '(a).*(b$)'  # pattern = '(a.+)b$' 'or' \w(a.+)b$
 
 # text = input("Enter a text to match if the input string has an 'a' followed by anything ending in 'b': ")
 
@@ -324,7 +324,7 @@ containing 'z', not the start or end of the word."""
 
 # text = input('Enter a text to match a word containing "z", not the start or end of the word.: ')
 
-# pattern = r'\w+[z]\w+'
+# pattern = r'\w+[z]\w+' # pattern = r'[a-yA-Y]+[z]+[a-yA-Y]+'
 
 # match = re.search(pattern, text, re.IGNORECASE )
 
@@ -412,21 +412,45 @@ Write a Python program to remove leading zeros from an IP address.
 # # -192.158.1.38.
 import re
 
-ip = '0123.0247.0124.0247'
+ip = '01230.0247.0124.024700'
 
-pattern = r'^0*(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.0*(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.0*(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.0*(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
+pattern = '0([\d]+\.?)'
 
-match = re.search(pattern, ip)
+match = re.sub(pattern, r'\1', ip)
 
-if match:
-    clean = ".".join(match.groups())
-    print(clean)
+print(match)
+
+# pattern = r'^0*(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.0*(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.0*(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.0*(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
+
+# match = re.search(pattern, ip)
+
+# if match:
+#     clean = ".".join(match.groups())
+#     print(clean)
         
-else:
-    print('There is no match')
+# else:
+#     print('There is no match')
 
 
 
 # pattern = r'^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)'
 
 
+# import re
+
+
+# ip = r'^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
+
+# email = r'^[a-zA-Z0-9\._-]*@[a-zA-Z0-9\._-]+\.[a-zA-Z]+$'
+
+# num = '555'
+
+# P_num = r'^([0123]?[0-9][0-9]?)'
+
+# p_handy = r'\+[4][9]\s[1][5-7][0-9]\s[0-9]{8}' # +49 152 07226260
+
+# handy = '+49 176 24049637'
+
+# match = re.search(p_handy, handy)
+
+# print(match)
